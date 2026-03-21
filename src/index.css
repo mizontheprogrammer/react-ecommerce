@@ -1,0 +1,530 @@
+/* Import Modern Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFFFF;
+  color: #374151;
+}
+
+/* Pokéball Loading Spinner */
+@keyframes pokeballSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pokeball-loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #FF0000;
+  border-top: 5px solid #FFFFFF;
+  border-radius: 50%;
+  animation: pokeballSpin 1s linear infinite;
+}
+
+/* Smooth Fade-Up Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease-out;
+}
+
+/* Product Card - White with Red Outline */
+.product-card {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  border-color: #FF0000;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.15);
+}
+
+/* Discount Badge */
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #FF0000;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+/* Quick View Button */
+.quick-view-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  border: 2px solid #FF0000;
+  color: #FF0000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.product-card:hover .quick-view-btn {
+  opacity: 1;
+}
+
+.quick-view-btn:hover {
+  background: #FF0000;
+  color: white;
+}
+
+/* Add to Cart Button - Centered */
+.add-to-cart-btn {
+  background: white;
+  color: #FF0000;
+  border: 2px solid #FF0000;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  width: auto;
+  min-width: 150px;
+}
+
+.add-to-cart-btn:hover {
+  background: #FF0000;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+/* Price Display */
+.price-display {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FF0000;
+  text-align: center;
+  margin: 0.75rem 0;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #9CA3AF;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* Category Badge */
+.category-badge {
+  background: #F3F4F6;
+  color: #374151;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  border: 1px solid #E5E7EB;
+}
+
+/* Navbar */
+.navbar-pokemon {
+  background: white;
+  border-bottom: 2px solid #FF0000;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.1);
+}
+
+/* Category Sidebar */
+.category-sidebar {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.category-sidebar h4 {
+  color: #FF0000;
+  font-weight: 700;
+  border-bottom: 2px solid #FF0000;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Category Items - NO BLUE */
+.category-item {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: white;
+  color: #374151 !important;
+  width: 100%;
+  text-align: left;
+  text-decoration: none !important;
+}
+
+.category-item:hover {
+  border-color: #FF0000;
+  background: rgba(255, 0, 0, 0.05);
+  color: #FF0000 !important;
+}
+
+.category-item.active {
+  background: #FF0000;
+  color: white !important;
+  border-color: #FF0000;
+  font-weight: 600;
+}
+
+/* Cart Badge */
+.cart-badge {
+  background: #FF0000;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Button Styles */
+.btn-pokemon {
+  background: white;
+  color: #FF0000;
+  border: 2px solid #FF0000;
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-pokemon:hover {
+  background: #FF0000;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.btn-outline-pokemon {
+  background: transparent;
+  color: #FF0000;
+  border: 2px solid #FF0000;
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-pokemon:hover {
+  background: #FF0000;
+  color: white;
+}
+
+/* Install Button */
+.install-btn {
+  background: #FF0000;
+  color: white;
+  border: 2px solid #FF0000;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.install-btn:hover {
+  background: white;
+  color: #FF0000;
+  transform: scale(1.05);
+}
+
+/* Checkout Form */
+.form-pokemon {
+  border: 2px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.form-pokemon:focus {
+  border-color: #FF0000;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+}
+
+/* Search Bar */
+.search-pokemon {
+  border: 2px solid #E5E7EB;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-pokemon:focus {
+  outline: none;
+  border-color: #FF0000;
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+}
+
+/* Header */
+.header-bg {
+  background: white;
+  border-bottom: 2px solid #FF0000;
+}
+
+.header-bg h1 {
+  color: #FF0000;
+  font-weight: 700;
+}
+
+/* Carousel Caption */
+.carousel-caption-pokemon {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #FF0000;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.carousel-caption-pokemon h2,
+.carousel-caption-pokemon p {
+  color: #000000;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+/* Review Stars */
+.review-stars {
+  color: #FFCB05;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+/* Footer */
+.footer-pokemon {
+  background: white;
+  color: #374151;
+  border-top: 3px solid #FF0000;
+}
+
+/* Section Titles */
+.section-title {
+  color: #FF0000;
+  font-weight: 700;
+  border-bottom: 3px solid #FF0000;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+/* Card Headers */
+.card-header-pokemon {
+  background: white;
+  color: #FF0000;
+  border-bottom: 2px solid #FF0000;
+  font-weight: 700;
+}
+
+/* Alert Boxes */
+.alert-pokemon {
+  background: rgba(255, 0, 0, 0.05);
+  border: 2px solid #FF0000;
+  color: #FF0000;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Page Title */
+.page-title {
+  color: #FF0000;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+  .header-bg h1 {
+    font-size: 1.2rem !important;
+  }
+  
+  .header-bg .d-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile Bottom Navigation */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(255, 0, 0, 0.1);
+    z-index: 1000;
+    border-top: 2px solid #FF0000;
+  }
+  
+  .nav-item {
+    margin: 0 5px;
+  }
+  
+  .nav-link {
+    font-size: 0.7rem;
+    padding: 5px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #374151 !important;
+  }
+  
+  .nav-link i {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+  
+  .nav-link.active {
+    color: #FF0000 !important;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* FORCE ALL HEADINGS TO RED - NO BLUE */
+h1, h2, h3, h4, h5, h6 {
+  color: #FF0000 !important;
+}
+
+/* Specifically target category titles */
+h4.mb-3,
+.page-title,
+.category-title {
+  color: #FF0000 !important;
+}
+
+/* ======================================== */
+/* MODULE 5: Mobile Bottom Navigation */
+/* ======================================== */
+
+/* Show mobile nav only on screens smaller than 992px */
+@media (max-width: 991px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  .mobile-nav {
+    display: block !important;
+  }
+  
+  /* Add padding to body so content isn't hidden behind bottom nav */
+  body {
+    padding-bottom: 70px;
+  }
+  
+  /* Active state for mobile nav links */
+  .mobile-nav .nav-link.active,
+  .mobile-nav a.active {
+    color: #FF0000 !important;
+  }
+  
+  .mobile-nav .nav-link.active i,
+  .mobile-nav a.active i {
+    color: #FF0000 !important;
+  }
+}
+
+/* Show desktop nav only on screens 992px and larger */
+@media (min-width: 992px) {
+  .desktop-nav {
+    display: block !important;
+  }
+  
+  .mobile-nav {
+    display: none !important;
+  }
+  
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* ======================================== */
+/* MODULE 5: Smooth Fade-Up Animation */
+/* ======================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease-out;
+}
+
+/* ======================================== */
+/* MODULE 5: Responsive Header */
+/* ======================================== */
+
+@media (max-width: 768px) {
+  .header-bg h1 {
+    font-size: 1.2rem !important;
+  }
+  
+  .header-bg p {
+    font-size: 0.75rem !important;
+  }
+}
