@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
-const API_URL = 'https://react-ecommerce-backend-tb4w.onrender.com';
+const API_URL = 'http://localhost:5001/api/products';
 
 function HeroCarousel() {
   const slides = [
