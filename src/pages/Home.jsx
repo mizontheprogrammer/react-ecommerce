@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://react-ecommerce-backend-tb4w.onrender.com';
+const API_URL = 'https://react-ecommerce-backend-tb4w.onrender.com';
 function HeroCarousel() {
   const slides = [
     { id: 1, image: `${API_URL}/assets/banner1.jpg` },
