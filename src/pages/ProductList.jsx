@@ -2,30 +2,25 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
-const API_URL = 'https://react-ecommerce-backend-tb4w.onrender.com/api/categories';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    Promise.all([
-      fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/products').then(r => r.json()),
-      fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/categories').then(r => r.json())
-    ])
-    .then(([productsData, categoriesData]) => {
-      setProducts(productsData);
-      setCategories(categoriesData);
-      setLoading(false);
-    })
-    .catch(err => {
-      console.error('Fetch error:', err);
-      setError(err.message);
-      setLoading(false);
-    });
+    fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/products')
+      .then(r => r.json())
+      .then(productsData => {
+        setProducts(productsData);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Fetch error:', err);
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   const handleCategorySelect = (category) => {
@@ -54,7 +49,6 @@ function ProductList() {
       <div className="row">
         <div className="col-lg-2 col-md-3 mb-4">
           <Sidebar 
-            categories={categories}
             selectedCategory={selectedCategory}
             onCategorySelect={handleCategorySelect}
           />

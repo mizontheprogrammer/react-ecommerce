@@ -72,24 +72,20 @@ function HeroCarousel() {
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/products').then(r => r.json()),
-      fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/categories').then(r => r.json())
-    ])
-    .then(([productsData, categoriesData]) => {
-      setProducts(productsData);
-      setCategories(categoriesData);
-      setLoading(false);
-    })
-    .catch(err => {
-      console.error('Fetch error:', err);
-      setLoading(false);
-    });
+    fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/products')
+      .then(r => r.json())
+      .then(productsData => {
+        setProducts(productsData);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Fetch error:', err);
+        setLoading(false);
+      });
   }, []);
 
   const handleCategorySelect = (category) => {
@@ -116,7 +112,6 @@ function Home() {
       <div className="row g-4">
         <div className="col-lg-3">
           <Sidebar 
-            categories={categories}
             selectedCategory={selectedCategory}
             onCategorySelect={handleCategorySelect}
           />
