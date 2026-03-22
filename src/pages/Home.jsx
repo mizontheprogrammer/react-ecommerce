@@ -3,7 +3,21 @@ import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-
+useEffect(() => {
+  Promise.all([
+    fetch(`${API_URL}/api/products`).then(r => r.json()),
+    fetch(`${API_URL}/api/categories`).then(r => r.json())
+  ])
+  .then(([productsData, categoriesData]) => {
+    setProducts(productsData);
+    setCategories(categoriesData);
+    setLoading(false);
+  })
+  .catch(err => {
+    console.error('Fetch error:', err);
+    setLoading(false);
+  });
+}, []);
 function HeroCarousel() {
   const slides = [
     { id: 1, image: `${API_URL}/assets/banner1.jpg` },
