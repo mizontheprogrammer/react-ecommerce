@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
-const API_URL = 'http://localhost:5001/api/products';
+const API_URL = 'https://react-ecommerce-backend-tb4w.onrender.com/api/products';
 
 function HeroCarousel() {
   const slides = [
@@ -78,8 +78,8 @@ function Home() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API_URL}/api/products`).then(r => r.json()),
-      fetch(`${API_URL}/api/categories`).then(r => r.json())
+      fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/products').then(r => r.json()),
+      fetch('https://react-ecommerce-backend-tb4w.onrender.com/api/categories').then(r => r.json())
     ])
     .then(([productsData, categoriesData]) => {
       setProducts(productsData);
