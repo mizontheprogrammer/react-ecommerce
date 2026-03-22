@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://react-ecommerce-backend-tb4w.onrender.com';
-git add .
+const API_URL = import.meta.env.VITE_API_URL || 'https://react-ecommerce-backend-tb4w.onrender.com/api/products';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
