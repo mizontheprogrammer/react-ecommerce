@@ -2,22 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import ProductCard from '../components/ProductCard';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-useEffect(() => {
-  Promise.all([
-    fetch(`${API_URL}/api/products`).then(r => r.json()),
-    fetch(`${API_URL}/api/categories`).then(r => r.json())
-  ])
-  .then(([productsData, categoriesData]) => {
-    setProducts(productsData);
-    setCategories(categoriesData);
-    setLoading(false);
-  })
-  .catch(err => {
-    console.error('Fetch error:', err);
-    setLoading(false);
-  });
-}, []);
+// ✅ API_URL uses environment variable (works locally AND on Vercel)
+const API_URL = import.meta.env.VITE_API_URL || 'https://react-ecommerce-backend-tb4w.onrender.com';
+
 function HeroCarousel() {
   const slides = [
     { id: 1, image: `${API_URL}/assets/banner1.jpg` },
@@ -27,7 +14,6 @@ function HeroCarousel() {
 
   return (
     <div id="heroCarousel" className="carousel slide mb-4" data-bs-ride="carousel">
-      {/* Indicators */}
       <div className="carousel-indicators">
         {slides.map((_, index) => (
           <button
@@ -47,7 +33,6 @@ function HeroCarousel() {
         ))}
       </div>
       
-      {/* Images Only - No Text */}
       <div className="carousel-inner rounded" style={{ border: '2px solid #FF0000', overflow: 'hidden' }}>
         {slides.map((slide, index) => (
           <div key={slide.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
@@ -64,7 +49,6 @@ function HeroCarousel() {
         ))}
       </div>
       
-      {/* Navigation Arrows */}
       <button 
         className="carousel-control-prev" 
         type="button" 
@@ -128,12 +112,9 @@ function Home() {
 
   return (
     <div className="container py-4">
-      {/* Carousel */}
       <HeroCarousel />
 
-      {/* Main Content */}
       <div className="row g-4">
-        {/* Sidebar */}
         <div className="col-lg-3">
           <Sidebar 
             categories={categories}
@@ -142,9 +123,7 @@ function Home() {
           />
         </div>
 
-        {/* Products Grid */}
         <div className="col-lg-9">
-          {/* Category Title */}
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h4 style={{ color: '#FF0000', fontWeight: '700', margin: 0 }}>
               {selectedCategory}
@@ -154,7 +133,6 @@ function Home() {
             </span>
           </div>
           
-          {/* Product Grid */}
           {displayedProducts.length === 0 ? (
             <p className="text-muted text-center py-5">No products found.</p>
           ) : (
